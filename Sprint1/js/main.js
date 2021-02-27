@@ -44,6 +44,26 @@ function sacarPartido(){
 function sacarSeriePartidos(partidos){
 
     let contenido = document.getElementById("contenido");
+
+    let filaInitial = document.createElement("tr");
+
+    let onecolumn = document.createElement("td");
+    onecolumn.innerHTML = "EQUIPO LOCAL";
+
+    let twocolumn = document.createElement("td");
+    twocolumn.innerHTML = "GOLES LOCAL";
+
+    let threecolumn = document.createElement("td");
+    threecolumn.innerHTML = "EQUIPO VISITANTE";
+
+    let fourcolumn = document.createElement("td");
+    fourcolumn.innerHTML = "GOLES VISITANTE";
+
+    filaInitial.append(onecolumn, twocolumn, threecolumn, fourcolumn);
+    contenido.append(filaInitial);
+
+
+
     for(i=0; i<partidos;i++){
         let fila = document.createElement("tr");
 
@@ -69,4 +89,4 @@ function sacarSeriePartidos(partidos){
 
 }
 
-sacarSeriePartidos(50);
+sacarSeriePartidos(300);
