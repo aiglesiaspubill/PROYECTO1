@@ -22,10 +22,10 @@ function sacarClasificacion(){
     titulo1.innerHTML = "POS";
     //Columna equipo
     let titulo2 = document.createElement("th");
-    titulo2.innerHTML = "EQUIPO";
+    titulo2.innerHTML = "ESCUDO";
     //Columna escudo
     let titulo11 = document.createElement("th");
-    titulo11.innerHTML = "ESCUDO";
+    titulo11.innerHTML = "EQUIPO";
     //Columna puntos
     let titulo3 = document.createElement("th");
     titulo3.innerHTML = "PUNTOS";
@@ -68,10 +68,9 @@ function sacarClasificacion(){
         //CELDA ESCUDO
         let escudo = document.createElement("td");
         let img = document.createElement("img");
-        let imagen = new Image();
-        imagen.src = "https://crests.football-data.org/${classificacion.standings[0].table[i].team.id}.svg";
-        img.append(imagen);
-        escudo.innerHTML = img;
+        img.setAttribute("src", `https://crests.football-data.org/${clasificacion.standings[0].table[i].team.id}.svg`);
+        img.classList.add("imagenEscudo");
+        escudo.append(img);
         //CELDA EQUIPO
         let equipo = document.createElement("td");
         equipo.innerHTML = `${clasificacion.standings[0].table[i].team.name}`;
