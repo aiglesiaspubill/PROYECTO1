@@ -1,87 +1,52 @@
-console.log(data);
 
-/* function sacarPartido(){
+//FUNCION PARA AÑADIR UN TITULO
+function añadirTitulo(tituloCabecera){
+    let titulo = document.getElementById("titulo");
+    let escrito = document.createElement("h1");
+    escrito.innerHTML = (tituloCabecera);
+    titulo.append(escrito);
+}
 
-    let contenido = document.getElementById("contenido");
-
-    let fila = document.createElement("tr");
-
-    let local = document.createElement("td");
-    local.innerHTML = `${data.matches[0].homeTeam.name}`;
-
-    let visitante = document.createElement("td");
-    visitante.innerHTML = `${data.matches[0].awayTeam.name}`;
-
-    let golesLocal = document.createElement("td");
-    golesLocal.innerHTML = `${data.matches[0].score.fullTime.homeTeam}`;
-
-    let golesVisitante = document.createElement("td");
-    golesVisitante.innerHTML = `${data.matches[0].score.fullTime.awayTeam}`;
-
-    fila.append(local, golesLocal);
-    fila.append(visitante);
-    fila.append(golesVisitante);
-    contenido.append(fila);
-   
-
-} */
-
-
-
- function sacarSeriePartidos(partidos){
-
+//FUNCION PARA AÑADIR CABECERA A LA TABLA
+function añadirCabeceraTabla(elementosCabecera=[]){
     let cabeceraTabla = document.getElementById("cabeceraTabla");
-    let contenidoTabla = document.getElementById("contenidoTabla")
-
-    //AÑADIR UN TITULO
-    let cabecera = document.getElementById("cabecera");
-    let titulo = document.createElement("h1");
-    titulo.innerHTML = ("TODOS LOS PARTIDOS DE LA LIGA");
-    cabecera.append(titulo);
-
-    let filaInitial = document.createElement("tr");
-
-    let titulo1 = document.createElement("th");
-    titulo1.innerHTML = "EQUIPO LOCAL";
-
-    let titulo2 = document.createElement("th");
-    titulo2.innerHTML = "GOLES LOCAL";
-
-    let titulo4 = document.createElement("th");
-    titulo4.innerHTML = "EQUIPO VISITANTE";
-
-    let titulo3 = document.createElement("th");
-    titulo3.innerHTML = "GOLES VISITANTE";
-
-    filaInitial.append(titulo1, titulo2, titulo3, titulo4);
-    cabeceraTabla.append(filaInitial);
-
-
-
-    for(i=0; i<partidos;i++){
-        let fila = document.createElement("tr");
-
-        let local = document.createElement("td");
-        local.innerHTML = `${data.matches[i].homeTeam.name}`;
-
-        let visitante = document.createElement("td");
-        visitante.innerHTML = `${data.matches[i].awayTeam.name}`;
-
-        let golesLocal = document.createElement("td");
-        golesLocal.innerHTML = `${data.matches[i].score.fullTime.homeTeam}`;
-
-        let golesVisitante = document.createElement("td");
-        golesVisitante.innerHTML = `${data.matches[i].score.fullTime.awayTeam}`;
-
-        fila.append(local);
-        fila.append(golesLocal);
-        fila.append(golesVisitante);
-        fila.append(visitante);
-        contenidoTabla.append(fila);
+    let filaCabecera = cabeceraTabla.insertRow(0);
+    for(let i = 0; i<elementosCabecera.length; i++){
+        let celdaNueva = filaCabecera.insertCell(i);
+        let texto  = document.createTextNode(elementosCabecera[i]);
+        celdaNueva.appendChild(texto);
+        
     }
+    cabeceraTabla.append(filaCabecera);
+    console.log("CABECERA BIEN PUESTA");
+}
 
 
-} 
+//FUNCION PARA CREAR TABLA
+function generarTabla(elementosCabecera=[], filaTabla, valores=[]){
+    let cuerpoTabla = document.getElementById("cuerpoTabla");
+        for(j=0; j<elementosCabecera.length; j++){
+            let celdaNueva=filaTabla.insertCell(j);
+            let texto = document.createTextNode(valores[j]);
+            celdaNueva.appendChild(texto);
+            
+        }
+        cuerpoTabla.append(filaTabla);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //FUNCION QUE SE LE PASA PARAMETRO DE JORNADA Y TE SACA LOS PARTIDOS DE ESA JORNADA
 function sacarPartidosJornada(){
@@ -186,5 +151,4 @@ function sacarPartidosJornada(){
 }
 
 
-let totalPartidos = `${data.matches}`;
-sacarSeriePartidos(380);
+

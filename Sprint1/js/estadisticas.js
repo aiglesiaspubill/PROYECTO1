@@ -1,12 +1,9 @@
 console.log(clasificacion);
 
+
+
 function topFiveGoleadores()
 {
-    //AÑADIR UN TITULO
-    let cabecera = document.getElementById("cabecera");
-    let titulo = document.createElement("h1");
-    titulo.innerHTML = ("ESTADISTICAS DE LA LIGA");
-    cabecera.append(titulo);
 
     let cabeceraTabla = document.getElementById("cabeceraTabla");
     let contenidoTabla = document.getElementById("contenidoTabla");
@@ -77,5 +74,3 @@ function topFiveGoleadores()
 
     }
 }
-
-topFiveGoleadores();

@@ -1,88 +1,58 @@
 console.log(clasificacion);
 
+let cabecera = ["POS","ESCUDO","EQUIPO","PUNTOS", "PJ", "G", "E", "P", "GF", "GC","DIFERENCIA DE GOLES"];
+
+
+function tablaClasificacion(){
+
+    añadirCabeceraTabla(cabecera);
+
+    for(let i=0; i<clasificacion.standings[0].table.length;i++){
+        let position = `${clasificacion.standings[0].table[i].position}`;
+        let escudo = document.createElement("td");
+        let imagen = new Image(50.50);
+        imagen.setAttribute("src" , `https://crests.football-data.org/${clasificacion.standings[0].table[i].team.id}.svg`);
+        escudo.append(imagen);
+        let equipo = `${clasificacion.standings[0].table[i].team.name}`;
+        let puntosTotales = `${clasificacion.standings[0].table[i].points}`;
+        let partidosJugados = `${clasificacion.standings[0].table[i].playedGames}`;
+        let ganados = `${clasificacion.standings[0].table[i].won}`;
+        let empatados = `${clasificacion.standings[0].table[i].draw}`;
+         let perdidos = `${clasificacion.standings[0].table[i].lost}`;
+        let golesFavor = `${clasificacion.standings[0].table[i].goalsFor}`;
+        let golesContra = `${clasificacion.standings[0].table[i].goalsAgainst}`;
+        let diferenciaGoles = `${clasificacion.standings[0].table[i].goalDifference}`;
+
+        let datos = [position, imagen, equipo, puntosTotales, partidosJugados, ganados, empatados, perdidos, golesFavor, golesContra, diferenciaGoles];
+
+        let filaTabla = cuerpoTabla.insertRow(i);
+        generarTabla(cabecera, filaTabla, datos);
+    }
+}
+
+
+tablaClasificacion();
 
 function sacarClasificacion(){
 
-    //AÑADIR UN TITULO
-    let cabecera = document.getElementById("cabecera");
-    let titulo = document.createElement("h1");
-    titulo.innerHTML = ("CLASIFICACION DE LA LIGA");
-    cabecera.append(titulo);
 
-    let cabeceraTabla = document.getElementById("cabeceraTabla");
+    
     let contenidoTabla = document.getElementById("contenidoTabla");
 
-
-    //CODIGO PARA CREAR CABECERA DE TABLA
-    //Creo la fila
-    let filaInitial = document.createElement("tr");
-
-    //Columna posicion
-    let titulo1 = document.createElement("th");
-    titulo1.innerHTML = "POS";
-    //Columna equipo
-    let titulo2 = document.createElement("th");
-    titulo2.innerHTML = "ESCUDO";
-    //Columna escudo
-    let titulo11 = document.createElement("th");
-    titulo11.innerHTML = "EQUIPO";
-    //Columna puntos
-    let titulo3 = document.createElement("th");
-    titulo3.innerHTML = "PUNTOS";
-    //Columna Jugados
-    let titulo4 = document.createElement("th");
-    titulo4.innerHTML = "PJ";
-    //Columna Ganados
-    let titulo5 = document.createElement("th");
-    titulo5.innerHTML = "G";
-    //Columna Empatados
-    let titulo6 = document.createElement("th");
-    titulo6.innerHTML = "E";
-    //Columna Perdidos
-    let titulo7 = document.createElement("th");
-    titulo7.innerHTML = "P";
-    //Columna Goles a favor
-    let titulo8 = document.createElement("th");
-    titulo8.innerHTML = "GF";
-    //Columna Goles en contra
-    let titulo9 = document.createElement("th");
-    titulo9.innerHTML = "GC";
-    //Columna Diferencia de Goles
-    let titulo10 = document.createElement("th");
-    titulo10.innerHTML = "DIFERENCIA DE GOLES";
-    //ADJUNTO LOS DATOS OBTENIDOS. PRIMERO EN LA FILA Y DESPUES EN LA CABECERA
-    filaInitial.append(titulo1, titulo2, titulo11, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10);
-    cabeceraTabla.append(filaInitial);
-
-
-    //CODIGO PARA CREAR CONTENIDO DE TABLA
+      //CODIGO PARA CREAR CONTENIDO DE TABLA
     for(i=0; i<20;i++){
 
-        //Creo primer elemento fila
-        let fila = document.createElement("tr");
-
-        //Creo una celda y añado el dato obtenido
-        //CELDA POSICION
-        let posicion = document.createElement("td");
-        posicion.innerHTML = `${clasificacion.standings[0].table[i].position}`;
+        
         //CELDA ESCUDO
         let escudo = document.createElement("td");
         let img = document.createElement("img");
         img.setAttribute("src", `https://crests.football-data.org/${clasificacion.standings[0].table[i].team.id}.svg`);
         img.classList.add("imagenEscudo");
         escudo.append(img);
-        //CELDA EQUIPO
-        let equipo = document.createElement("td");
-        equipo.innerHTML = `${clasificacion.standings[0].table[i].team.name}`;
-        //CELDA PUNTOS TOTALES
-        let puntosTotales = document.createElement("td");
-        puntosTotales.innerHTML = `${clasificacion.standings[0].table[i].points}`;
-        //CELDA PARTIDOS JUGADOS
-        let partidosJugados = document.createElement("td");
-        partidosJugados.innerHTML = `${clasificacion.standings[0].table[i].playedGames}`;
+
+        
         //CELDA GANADOS
-        let ganados = document.createElement("td");
-        ganados.innerHTML = `${clasificacion.standings[0].table[i].won}`;
+        
         //CELDA EMPATADOS
         let empatados = document.createElement("td");
         empatados.innerHTML = `${clasificacion.standings[0].table[i].draw}`;
@@ -117,5 +87,3 @@ function sacarClasificacion(){
 
 
 }
-
-sacarClasificacion();
