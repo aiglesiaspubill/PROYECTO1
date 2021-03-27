@@ -1,49 +1,15 @@
-
-//FUNCION PARA AÑADIR UN TITULO
-function añadirTitulo(tituloCabecera){
-    let titulo = document.getElementById("titulo");
-    let escrito = document.createElement("h1");
-    escrito.innerHTML = (tituloCabecera);
-    titulo.append(escrito);
-}
-
-//FUNCION PARA AÑADIR CABECERA A LA TABLA
-function añadirCabeceraTabla(elementosCabecera=[]){
-    let cabeceraTabla = document.getElementById("cabeceraTabla");
-    let filaCabecera = cabeceraTabla.insertRow(0);
-    for(let i = 0; i<elementosCabecera.length; i++){
-        let celdaNueva = filaCabecera.insertCell(i);
-        let texto  = document.createTextNode(elementosCabecera[i]);
-        celdaNueva.appendChild(texto);
-        
-    }
-    cabeceraTabla.append(filaCabecera);
-    console.log("CABECERA BIEN PUESTA");
-}
-
-
-//FUNCION PARA CREAR TABLA
-function generarTabla(elementosCabecera=[], filaTabla, valores=[]){
+//FUNCION GENERAR FILA EN UNA TABLA
+function generarFilaConHTML(valores=[]){
     let cuerpoTabla = document.getElementById("cuerpoTabla");
-        for(j=0; j<elementosCabecera.length; j++){
-            let celdaNueva=filaTabla.insertCell(j);
-            let texto = document.createTextNode(valores[j]);
-            celdaNueva.appendChild(texto);
-            
-        }
-        cuerpoTabla.append(filaTabla);
+    let fila = document.createElement("tr");
+    for(let i=0; i<valores.length;i++){
+        let celda = document.createElement("td");
+        celda.innerHTML = valores[i];
+        fila.append(celda);
+    }
+    cuerpoTabla.append(fila);
+
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

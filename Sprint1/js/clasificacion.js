@@ -1,89 +1,104 @@
 console.log(clasificacion);
 
-let cabecera = ["POS","ESCUDO","EQUIPO","PUNTOS", "PJ", "G", "E", "P", "GF", "GC","DIFERENCIA DE GOLES"];
+function getDataMatches() {
+    const url = "https://api.football-data.org/v2/competitions/2014/matches";
+    fetch(url, {
+        method: "GET",
+        headers:{
+            "X-Auth-Token":"ba887c48aa70430ab464256c42ff3bac"
+        }
 
+    }).then(response => {
+        if(response.ok) return response.json();
+    }).then(data => {
+        console.log(data);
 
-function tablaClasificacion(){
-
-    añadirCabeceraTabla(cabecera);
-
-    for(let i=0; i<clasificacion.standings[0].table.length;i++){
-        let position = `${clasificacion.standings[0].table[i].position}`;
-        let escudo = document.createElement("td");
-        let imagen = new Image(50.50);
-        imagen.setAttribute("src" , `https://crests.football-data.org/${clasificacion.standings[0].table[i].team.id}.svg`);
-        escudo.append(imagen);
-        let equipo = `${clasificacion.standings[0].table[i].team.name}`;
-        let puntosTotales = `${clasificacion.standings[0].table[i].points}`;
-        let partidosJugados = `${clasificacion.standings[0].table[i].playedGames}`;
-        let ganados = `${clasificacion.standings[0].table[i].won}`;
-        let empatados = `${clasificacion.standings[0].table[i].draw}`;
-         let perdidos = `${clasificacion.standings[0].table[i].lost}`;
-        let golesFavor = `${clasificacion.standings[0].table[i].goalsFor}`;
-        let golesContra = `${clasificacion.standings[0].table[i].goalsAgainst}`;
-        let diferenciaGoles = `${clasificacion.standings[0].table[i].goalDifference}`;
-
-        let datos = [position, imagen, equipo, puntosTotales, partidosJugados, ganados, empatados, perdidos, golesFavor, golesContra, diferenciaGoles];
-
-        let filaTabla = cuerpoTabla.insertRow(i);
-        generarTabla(cabecera, filaTabla, datos);
-    }
-}
-
-
-tablaClasificacion();
-
-function sacarClasificacion(){
-
-
+        tablaClasificacion(clasificacion.standings[0].table);
+    })
     
-    let contenidoTabla = document.getElementById("contenidoTabla");
+};
 
-      //CODIGO PARA CREAR CONTENIDO DE TABLA
-    for(i=0; i<20;i++){
 
-        
-        //CELDA ESCUDO
+getDataMatches();
+
+
+//FUNCION GENERAR TABLA DEL TOTAL DE PARTIDOS
+function tablaClasificacion(ligaPartidos){
+
+    //SELECCIONA EL CUERPO DE LA TABLA
+    let cuerpoTabla = document.getElementById("cuerpoTabla");
+    for(let i=0; i<ligaPartidos.length;i++){
+
+        //CREO EL PRIMER ELEMENTO FILA
+        let fila = document.createElement("tr");
+
+        //POSICION DEL EQUIPO
+        let position = document.createElement("td");
+        position.innerHTML = `${ligaPartidos[i].position}`;
+        fila.append(position);
+
+        //ESCUDO EQUIPO
         let escudo = document.createElement("td");
-        let img = document.createElement("img");
-        img.setAttribute("src", `https://crests.football-data.org/${clasificacion.standings[0].table[i].team.id}.svg`);
-        img.classList.add("imagenEscudo");
-        escudo.append(img);
-
-        
-        //CELDA GANADOS
-        
-        //CELDA EMPATADOS
-        let empatados = document.createElement("td");
-        empatados.innerHTML = `${clasificacion.standings[0].table[i].draw}`;
-         //CELDA PERDIDOS
-         let perdidos = document.createElement("td");
-         perdidos.innerHTML = `${clasificacion.standings[0].table[i].lost}`;
-        //CELDA GOLES A FAVOR
-        let golesFavor = document.createElement("td");
-        golesFavor.innerHTML = `${clasificacion.standings[0].table[i].goalsFor}`;
-        //CELDA GOLES EN CONTRA
-        let golesContra = document.createElement("td");
-        golesContra.innerHTML = `${clasificacion.standings[0].table[i].goalsAgainst}`;
-        //CELDA DIFERENCIA DE GOLES
-        let diferenciaGoles = document.createElement("td");
-        diferenciaGoles.innerHTML = `${clasificacion.standings[0].table[i].goalDifference}`;
-
-
-        fila.append(posicion);
+        let imagen = document.createElement("img");
+        imagen.setAttribute("src", `https://crests.football-data.org/${ligaPartidos[i].team.id}.svg`);
+        imagen.classList.add("imagenEscudo");
+        escudo.append(imagen);
         fila.append(escudo);
+
+
+        //NOMBRE EQUIPO
+        let equipo = document.createElement("td");
+        equipo.innerHTML = `${ligaPartidos[i].team.name}`;
         fila.append(equipo);
+
+        //PUNTOS TOTALES
+        let puntosTotales = document.createElement("td");
+        puntosTotales.innerHTML = `${ligaPartidos[i].points}`;
         fila.append(puntosTotales);
+
+        //PARTIDOS JUGADOS
+        let partidosJugados = document.createElement("td");
+        partidosJugados.innerHTML = `${ligaPartidos[i].playedGames}`;
         fila.append(partidosJugados);
+
+        //PARTIDOS GANADOS
+        let ganados = document.createElement("td");
+        ganados.innerHTML = `${ligaPartidos[i].won}`;
         fila.append(ganados);
+
+        //PARTIDOS EMPATADOS
+        let empatados = document.createElement("td");
+        empatados.innerHTML = `${ligaPartidos[i].draw}`;
         fila.append(empatados);
+
+        //PARTIDOS PERDIDOS
+        let perdidos = document.createElement("td");
+        perdidos.innerHTML = `${ligaPartidos[i].lost}`;
         fila.append(perdidos);
+
+        //GOLES A FAVOR
+        let golesFavor = document.createElement("td");
+        golesFavor.innerHTML = `${ligaPartidos[i].goalsFor}`;
         fila.append(golesFavor);
+
+        //GOLES EN CONTRA
+        let golesContra = document.createElement("td");
+        golesContra.innerHTML = `${ligaPartidos[i].goalsAgainst}`;
         fila.append(golesContra);
+
+        //DIFERENCIA DE GOLES
+        let diferenciaGoles = document.createElement("td");
+        diferenciaGoles.innerHTML = `${ligaPartidos[i].goalDifference}`;
         fila.append(diferenciaGoles);
-        contenidoTabla.append(fila);
+
+        //AÑADO FILA AL CUERPO DE LA TABLA
+        cuerpoTabla.append(fila);
     }
-
-
-
+    
 }
+
+
+
+
+
+

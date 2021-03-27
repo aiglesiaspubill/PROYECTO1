@@ -11,27 +11,39 @@
 
 <body>
 
-    <!--BARRA DE NAVEGACION-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <!--BARRA DE NAVEGACION-->
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="index.html">LA LIGA</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-        <li class="nav-item active">
-            <a class="nav-link" href="partidos.html">PARTIDOS <span class="sr-only"></span></a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="partidos.html">PARTIDOS <span class="sr-only"></span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="clasificacion.html">CLASIFICACION</a>
+          <a class="nav-link" href="clasificacion.html">CLASIFICACION</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="estadisticas.html">ESTADISTICAS</a>
+          <a class="nav-link" href="estadisticas.html">ESTADISTICAS</a>
         </li>
-        </ul>
-        
+      </ul>
+      
     </div>
-    </nav>
+  </nav>
+
+  <form action="" method="post" target="_blank" id="motorBusdqueda">
+
+    <p>
+    Búsqueda de equipo: <input type="text" name="busquedaEquipo" placeholder="Busca un equipo..."><br>
+    
+    <input type="checkbox" name="ganados"> Ganados<br>
+    <input type="checkbox" name="empatados"> Empatados<br>
+    <input type="checkbox" name="perdidos"> Perdidos<br>
+
+    <input type="submit" value="Buscar">
+  
+    </p>
+  
+  </form>
 
     <header id="titulo" class="titulo">
         <h1>PAGINA DE PARTIDOS TOTALES</h1>
@@ -39,7 +51,12 @@
 
     <table class="table table-sm table-striped table-bordered">
         <thead id="cabeceraTabla" class="cabeceraTabla">
-           
+           <tr>
+               <th>LOCAL</th>
+               <th>VISITANTE</th>
+               <th>GOLES LOCAL</th>
+               <th>GOLES VISITANTE</th>
+           </tr>
         </thead>
         <tbody id="cuerpoTabla" class="cuerpoTabla">
 

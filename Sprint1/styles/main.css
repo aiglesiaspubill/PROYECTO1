@@ -12,17 +12,17 @@
     align-items: center;
     background-color: black;
     color: blanchedalmond;
-    font-size: 35px;
+    font-size: 25px;
 }
 
 .imagenEscudo{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
 }
 
 .cuerpoTabla{
     text-align: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 15px;
 }
 

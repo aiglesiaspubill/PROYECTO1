@@ -5,25 +5,7 @@ console.log(clasificacion);
 function topFiveGoleadores()
 {
 
-    let cabeceraTabla = document.getElementById("cabeceraTabla");
-    let contenidoTabla = document.getElementById("contenidoTabla");
-
-    //CODIGO PARA CREAR CABECERA DE TABLA
-    //Creo la fila
-    let filaInitial = document.createElement("tr");
-
-    //Columna escudo
-    let titulo1 = document.createElement("th");
-    titulo1.innerHTML = "ESCUDO";
-     //Columna equipo
-     let titulo2 = document.createElement("th");
-     titulo2.innerHTML = "EQUIPO";
-     //Columna goles
-     let titulo3 = document.createElement("th");
-     titulo3.innerHTML = "GOLES TOTALES";
-
-    filaInitial.append(titulo1, titulo2, titulo3);
-    cabeceraTabla.append(filaInitial);
+    let contenidoTabla = document.getElementById("cuerpoTabla");
 
 
     let indices = [];
@@ -74,3 +56,5 @@ function topFiveGoleadores()
 
     }
 }
+
+topFiveGoleadores();
